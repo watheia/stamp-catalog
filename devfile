@@ -1,0 +1,39 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: stamp-catalog-
+projects:
+  - name: stamp-catalog
+    source:
+      type: git
+      location: 'https://github.com/watheia/stamp-catalog'
+components:
+  - type: chePlugin
+    id: vscode/typescript-language-features/latest
+    registryUrl: 'https://eclipse-che.github.io/che-plugin-registry/7.38.0/v3/'
+  - type: dockerimage
+    alias: nodejs
+    image: 'registry.access.redhat.com/rhel8-beta/nodejs-14'
+    memoryLimit: 4Gi
+    endpoints:
+      - name: nodejs
+        port: 4100
+    mountSources: true
+commands:
+  - name: install all required dependencies
+    actions:
+      - type: exec
+        component: nodejs
+        command: yarn install
+        workdir: '${CHE_PROJECTS_ROOT}/stamp-catalog'
+  - name: start the backend service (strapi)
+    actions:
+      - type: exec
+        component: nodejs
+        command: yarn workspace backend start
+        workdir: '${CHE_PROJECTS_ROOT}/stamp-catalog'
+  - name: start the frontend service (nextjs)
+    actions:
+      - type: exec
+        component: nodejs
+        command: yarn workspace frontend start
+        workdir: '${CHE_PROJECTS_ROOT}/stamp-catalog'

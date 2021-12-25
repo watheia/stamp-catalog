@@ -21,10 +21,5 @@ module.exports = {
     "@typescript-eslint",
     "prettier"
   ],
-  "rules": {
-    "linebreak-style": [
-      "error",
-      "unix"
-    ]
-  }
+  "rules": {}
 };

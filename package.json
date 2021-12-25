@@ -1,6 +1,17 @@
 {
   "name": "stamp-catalog",
   "packageManager": "yarn@3.1.1",
+  "private": "true",
+  "scripts": {
+    "build": "yarn build:backend && yarn build:frontend",
+    "build:backend": "yarn workspace backend build",
+    "build:frontend": "yarn workspace frontend build",
+    "test": "yarn test:frontend",
+    "test:frontend": "yarn workspace frontend test",
+    "lint": "yarn lint:backend && yarn lint:frontend",
+    "lint:backend": "yarn workspace backend lint",
+    "lint:frontend": "yarn workspace frontend lint"
+  },
   "workspaces": [
     "backend",
     "frontend"

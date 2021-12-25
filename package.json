@@ -1,0 +1,13 @@
+{
+  "name": "stamp-catalog",
+  "packageManager": "yarn@3.1.1",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.4"
+  }
+}
